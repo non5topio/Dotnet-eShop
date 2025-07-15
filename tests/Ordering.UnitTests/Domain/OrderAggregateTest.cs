@@ -175,4 +175,250 @@ public class OrderAggregateTest
         //Assert
         Assert.AreEqual(fakeOrder.DomainEvents.Count, expectedResult);
     }
+/*
+FAILED TEST: **Analysis:**  
+The test run failed due to a missing **maui-tizen** workload required to build the project.
+
+**Recommended Fix:**  
+Install the missing workload by running:
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Cancel_order_in_awaiting_validation_status_due_to_stock_rejection()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new Order("1", "fakeName", address, 1, "1234", "123", "John Doe", DateTime.UtcNow);
+        order.OrderStatus = OrderStatus.AwaitingValidation;
+        var productId = 1;
+        var productName = "Test Product";
+        var unitPrice = 10.0m;
+        var discount = 0;
+        var pictureUrl = "http://example.com";
+        var units = 1;
+        order.AddOrderItem(productId, productName, unitPrice, discount, pictureUrl, units);
+        var orderStockRejectedItems = new List<int> { productId };
+    
+        // Act
+        order.SetCancelledStatusWhenStockIsRejected(orderStockRejectedItems);
+    
+        // Assert
+        Assert.AreEqual(OrderStatus.Cancelled, order.OrderStatus);
+        Assert.AreEqual($"The product items don't have stock: ({productName}).", order.Description);
+    }
+
+*/
+/*
+FAILED TEST: **Analysis:**  
+The test run failed because the required **maui-tizen** workload is missing, preventing the project from building.
+
+**Recommended Fix:**  
+Install the missing workload by running:
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Add_multiple_order_items_same_product_id_same_discount_increases_units()
+    {
+        // Arrange
+        var order = new OrderBuilder(new Address("123 Main St", "City", "State", "Country", "12345")).Build();
+        var productId = 1;
+        var productName = "Test Product";
+        var unitPrice = 10.0m;
+        var discount = 5.0m;
+        var pictureUrl = "http://example.com";
+        var units = 1;
+    
+        // Act
+        order.AddOrderItem(productId, productName, unitPrice, discount, pictureUrl, units);
+        order.AddOrderItem(productId, productName, unitPrice, discount, pictureUrl, units);
+    
+        // Assert
+        var orderItem = order.OrderItems.SingleOrDefault(i => i.ProductId == productId);
+        Assert.IsNotNull(orderItem);
+        Assert.AreEqual(unitPrice, orderItem.UnitPrice);
+        Assert.AreEqual(discount, orderItem.Discount);
+        Assert.AreEqual(2, orderItem.Units);
+    }
+
+*/
+/*
+FAILED TEST: **Analysis:**  
+The test run failed due to a missing **maui-tizen** workload required to build the project.
+
+**Recommended Fix:**  
+Install the missing workload by running:
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Add_multiple_order_items_same_product_id_varying_discounts_updates_with_higher_discount()
+    {
+        // Arrange
+        var order = new OrderBuilder(new Address("123 Main St", "City", "State", "Country", "12345")).Build();
+        var productId = 1;
+        var productName = "Test Product";
+        var unitPrice = 10.0m;
+        var pictureUrl = "http://example.com";
+        var initialDiscount = 5.0m;
+        var higherDiscount = 10.0m;
+        var units = 1;
+    
+        // Act
+        order.AddOrderItem(productId, productName, unitPrice, initialDiscount, pictureUrl, units);
+        order.AddOrderItem(productId, productName, unitPrice, higherDiscount, pictureUrl, units);
+    
+        // Assert
+        var orderItem = order.OrderItems.SingleOrDefault(i => i.ProductId == productId);
+        Assert.IsNotNull(orderItem);
+        Assert.AreEqual(unitPrice, orderItem.UnitPrice);
+        Assert.AreEqual(higherDiscount, orderItem.Discount);
+        Assert.AreEqual(units, orderItem.Units);
+    }
+
+*/
+/*
+FAILED TEST: **Analysis:**  
+The test run failed due to a missing **maui-tizen** workload required to build the project.
+
+**Recommended Fix:**  
+Install the missing workload by running:
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Set_order_status_to_cancelled_when_paid_throws_exception()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new Order("1", "fakeName", address, 1, "1234", "123", "John Doe", DateTime.UtcNow);
+        order.OrderStatus = OrderStatus.Paid;
+    
+        // Act & Assert
+        Assert.Throws<OrderingDomainException>(() => order.SetCancelledStatus());
+    }
+
+*/
+/*
+FAILED TEST: **Analysis:**  
+The test run failed due to a missing **maui-tizen** workload required to build the project.
+
+**Recommended Fix:**  
+Install the missing workload by running:
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Set_order_status_to_shipped_when_not_paid_throws_exception()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new Order("1", "fakeName", address, 1, "1234", "123", "John Doe", DateTime.UtcNow);
+        order.OrderStatus = OrderStatus.Submitted;
+    
+        // Act & Assert
+        Assert.Throws<OrderingDomainException>(() => order.SetShippedStatus());
+    }
+
+*/
+/*
+FAILED TEST: **Analysis:**  
+The test run failed due to a missing **maui-tizen** workload required to build the project.
+
+**Recommended Fix:**  
+Install the missing workload by running:
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Add_order_item_with_discount_equal_to_unit_price_succeeds()
+    {
+        // Arrange
+        var order = new OrderBuilder(new Address("123 Main St", "City", "State", "Country", "12345")).Build();
+        var productId = 1;
+        var productName = "Test Product";
+        var unitPrice = 10.0m;
+        var discount = 10.0m;
+        var pictureUrl = "http://example.com";
+        var units = 1;
+    
+        // Act
+        order.AddOrderItem(productId, productName, unitPrice, discount, pictureUrl, units);
+    
+        // Assert
+        var orderItem = order.OrderItems.SingleOrDefault(i => i.ProductId == productId);
+        Assert.IsNotNull(orderItem);
+        Assert.AreEqual(unitPrice, orderItem.UnitPrice);
+        Assert.AreEqual(discount, orderItem.Discount);
+        Assert.AreEqual(units, orderItem.Units);
+    }
+
+*/
+/*
+FAILED TEST: **Analysis:**  
+The test run failed because the required **maui-tizen** workload is missing, preventing the project from building.
+
+**Recommended Fix:**  
+Install the missing workload by running:
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Add_order_item_with_discount_greater_than_unit_price_throws_exception()
+    {
+        // Arrange
+        var order = new OrderBuilder(new Address("123 Main St", "City", "State", "Country", "12345")).Build();
+        var productId = 1;
+        var productName = "Test Product";
+        var unitPrice = 10.0m;
+        var discount = 15.0m;
+        var pictureUrl = "http://example.com";
+        var units = 1;
+    
+        // Act & Assert
+        Assert.Throws<OrderingDomainException>(() => order.AddOrderItem(productId, productName, unitPrice, discount, pictureUrl, units));
+    }
+
+*/
+/*
+FAILED TEST: The test run failed due to a missing workload required to build the project. The error indicates that the **maui-tizen** workload is missing.
+
+### **Analysis**
+- **Error**: `NETSDK1147: To build this project, the following workloads must be installed: maui-tizen`
+- **Cause**: The .NET SDK requires specific workloads to build certain types of projects. The `maui-tizen` workload is needed for this project but is not installed.
+
+### **Recommended Fix**
+Run the following command to install the required workload:
+
+```bash
+dotnet workload restore
+```
+
+This will install the necessary workloads to build the project and allow the tests to run.
+
+    [TestMethod]
+    public void Add_order_item_with_zero_units_throws_exception()
+    {
+        // Arrange
+        var order = new OrderBuilder(new Address("123 Main St", "City", "State", "Country", "12345")).Build();
+        var productId = 1;
+        var productName = "Test Product";
+        var unitPrice = 10.0m;
+        var discount = 0;
+        var pictureUrl = "http://example.com";
+        var units = 0;
+    
+        // Act & Assert
+        Assert.Throws<OrderingDomainException>(() => order.AddOrderItem(productId, productName, unitPrice, discount, pictureUrl, units));
+    }
+
+*/
 }
