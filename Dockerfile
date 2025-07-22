@@ -59,10 +59,8 @@ COPY . .
 # Install ReportGenerator tool for test coverage reports
 RUN dotnet tool install -g dotnet-reportgenerator-globaltool
 
-RUN dotnet workload install maui-android maui-ios maui-maccatalyst maui-tizen
-
 # Add dotnet tools to PATH
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
 # Run tests with coverage (excluding MAUI projects)
-CMD ["bash", "-c", "echo GLIBC VERSION && ldd --version && echo GLIBC VERSION CHECK && dotnet test --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --logger trx --logger 'console;verbosity=detailed' tests/Basket.UnitTests/Basket.UnitTests.csproj tests/Catalog.FunctionalTests/Catalog.FunctionalTests.csproj tests/Ordering.FunctionalTests/Ordering.FunctionalTests.csproj tests/Ordering.UnitTests/Ordering.UnitTests.csproj && find ./tests/TestResults -name 'coverage.cobertura.xml' -exec cp {} ./tests/TestResults/coverage.cobertura.xml \\; && reportgenerator -reports:./tests/TestResults/coverage.cobertura.xml -targetdir:./tests/TestResults/CoverageReport -reporttypes:'Html;Cobertura' && echo 'Coverage report generated in ./tests/TestResults/CoverageReport'"]
+CMD ["bash", "-c", "dotnet test --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --logger trx --logger 'console;verbosity=detailed' tests/Basket.UnitTests/Basket.UnitTests.csproj && dotnet test --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --logger trx --logger 'console;verbosity=detailed' tests/Catalog.FunctionalTests/Catalog.FunctionalTests.csproj && dotnet test --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --logger trx --logger 'console;verbosity=detailed' tests/Ordering.FunctionalTests/Ordering.FunctionalTests.csproj && dotnet test --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --logger trx --logger 'console;verbosity=detailed' tests/Ordering.UnitTests/Ordering.UnitTests.csproj && reportgenerator -reports:./tests/TestResults/**/coverage.cobertura.xml -targetdir:./tests/TestResults/CoverageReport -reporttypes:'Html;Cobertura'"]
