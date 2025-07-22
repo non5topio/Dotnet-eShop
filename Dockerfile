@@ -63,4 +63,10 @@ RUN dotnet tool install -g dotnet-reportgenerator-globaltool
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
 # Run tests with coverage (excluding MAUI projects)
-CMD ["bash", "-c", "dotnet test --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --logger trx --logger 'console;verbosity=detailed' tests/Basket.UnitTests/Basket.UnitTests.csproj && dotnet test --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --logger trx --logger 'console;verbosity=detailed' tests/Catalog.FunctionalTests/Catalog.FunctionalTests.csproj && dotnet test --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --logger trx --logger 'console;verbosity=detailed' tests/Ordering.FunctionalTests/Ordering.FunctionalTests.csproj && dotnet test --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --logger trx --logger 'console;verbosity=detailed' tests/Ordering.UnitTests/Ordering.UnitTests.csproj && reportgenerator -reports:./tests/TestResults/**/coverage.cobertura.xml -targetdir:./tests/TestResults/CoverageReport -reporttypes:'Html;Cobertura'"]
+CMD ["bash", "-c", "\
+time dotnet test ./tests/Basket.UnitTests/Basket.UnitTests.csproj --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --verbosity minimal && \
+time dotnet test ./tests/Catalog.FunctionalTests/Catalog.FunctionalTests.csproj --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --verbosity minimal && \
+time dotnet test ./tests/Ordering.FunctionalTests/Ordering.FunctionalTests.csproj --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --verbosity minimal && \
+time dotnet test ./tests/Ordering.UnitTests/Ordering.UnitTests.csproj --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --verbosity minimal && \
+find ./tests/TestResults -name 'coverage.cobertura.xml' -exec cp {} ./tests/TestResults/coverage.cobertura.xml \\; && \
+echo 'Tests completed with coverage'"]
