@@ -175,4 +175,193 @@ public class OrderAggregateTest
         //Assert
         Assert.AreEqual(fakeOrder.DomainEvents.Count, expectedResult);
     }
+/*
+FAILED TEST: The test run failed because the required `.NET workload` `maui-tizen` is missing, which is necessary to build the project.
+
+**Recommended Fix:**
+Run the following command to install the missing workload:
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Add_order_item_with_high_number_of_units()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new OrderBuilder(address)
+            .Build();
+    
+        // Act
+        order.AddOrderItem(1, "Product A", 100.0m, 0, "http://example.com/image.jpg", 1000);
+    
+        // Assert
+        Assert.AreEqual(1, order.OrderItems.Count);
+        Assert.AreEqual(1000, order.OrderItems.First().Units);
+    }
+
+*/
+/*
+FAILED TEST: The test run failed due to a missing `.NET workload` required to build the project. Specifically, the `maui-tizen` workload is missing.
+
+**Recommended Fix:**
+Run the following command to install the missing workload:
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Set_cancelled_status_when_stock_is_rejected()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new OrderBuilder(address)
+            .AddOne(1, "Product A", 100.0m, 0, "http://example.com/image.jpg")
+            .AddOne(2, "Product B", 50.0m, 0, "http://example.com/image.jpg")
+            .Build();
+    
+        order.SetAwaitingValidationStatus();
+    
+        // Act
+        order.SetCancelledStatusWhenStockIsRejected(new List<int> { 1, 2 });
+    
+        // Assert
+        Assert.AreEqual(OrderStatus.Cancelled, order.OrderStatus);
+        Assert.IsTrue(order.Description.Contains("The product items don't have stock: (Product A, Product B)."));
+    }
+
+*/
+/*
+FAILED TEST: The test run failed because the required `.NET workload` `maui-tizen` is missing, which is necessary to build the project.
+
+**Recommended Fix:**
+Run the following command to install the missing workload:
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Invalid_discount_setting_on_existing_order_item()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new OrderBuilder(address)
+            .AddOne(1, "Product A", 100.0m, 10, "http://example.com/image.jpg")
+            .Build();
+    
+        // Act & Assert
+        Assert.ThrowsException<OrderingDomainException>(() => order.OrderItems.First().SetNewDiscount(-1));
+    }
+
+*/
+/*
+FAILED TEST: The test run failed because the required `.NET workload` `maui-tizen` is missing, which is necessary to build the project.
+
+**Recommended Fix:**
+Run the following command to install the missing workload:
+
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Set_paid_status_raises_domain_event()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new OrderBuilder(address)
+            .Build();
+    
+        // Set up the order to be in StockConfirmed status
+        order.SetStockConfirmedStatus();
+    
+        // Act
+        order.SetPaidStatus();
+    
+        // Assert
+        Assert.AreEqual(1, order.DomainEvents.Count);
+        Assert.IsInstanceOfType(order.DomainEvents[0], typeof(OrderStatusChangedToPaidDomainEvent));
+        Assert.AreEqual(OrderStatus.Paid, order.OrderStatus);
+    }
+
+*/
+/*
+FAILED TEST: The test run failed due to a missing `.NET workload` required to build the project. Specifically, the `maui-tizen` workload is missing.
+
+**Recommended Fix:**
+Run the following command to install the missing workload:
+
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Set_shipped_status_when_not_paid_throws_exception()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new OrderBuilder(address)
+            .Build();
+    
+        // Act & Assert
+        Assert.ThrowsException<OrderingDomainException>(() => order.SetShippedStatus());
+    }
+
+*/
+/*
+FAILED TEST: The test run failed because the required `maui-tizen` workload is missing, which is needed to build the project. This is indicated in the `stdout` error message.
+
+**Recommended Fix:**
+Run the following command to install the missing workload:
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Add_order_item_with_same_discount_as_existing_item()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new OrderBuilder(address)
+            .AddOne(1, "Product A", 100.0m, 10, "http://example.com/image.jpg")
+            .Build();
+    
+        // Act
+        order.AddOrderItem(1, "Product A", 100.0m, 10, "http://example.com/image.jpg", 2);
+    
+        // Assert
+        Assert.AreEqual(1, order.OrderItems.Count);
+        Assert.AreEqual(3, order.OrderItems.First().Units);
+        Assert.AreEqual(10, order.OrderItems.First().Discount);
+    }
+
+*/
+/*
+FAILED TEST: The test run failed due to a missing workload required to build the project. The error indicates that the `maui-tizen` workload is missing.
+
+**Recommended Fix:**
+Run the following command to install the required workload:
+
+```bash
+dotnet workload restore
+```
+
+    [TestMethod]
+    public void Add_order_item_with_zero_discount()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new OrderBuilder(address)
+            .AddOne(1, "Product A", 100.0m, 0, "http://example.com/image.jpg")
+            .Build();
+    
+        // Act
+        order.AddOrderItem(1, "Product A", 100.0m, 0, "http://example.com/image.jpg", 2);
+    
+        // Assert
+        Assert.AreEqual(2, order.OrderItems.Count);
+        Assert.AreEqual(2, order.OrderItems.First().Units);
+    }
+
+*/
 }
