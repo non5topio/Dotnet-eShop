@@ -17,7 +17,7 @@
         "test-file-path": "tests/Ordering.UnitTests/Domain/OrderAggregateTest.cs"
       }
     ],
-    "test-command": "dotnet test --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --logger trx --logger 'console;verbosity=detailed' && find ./tests/TestResults -name 'coverage.cobertura.xml' -exec cp {} ./tests/TestResults/coverage.cobertura.xml \\; && reportgenerator -reports:./tests/TestResults/coverage.cobertura.xml -targetdir:./tests/TestResults/CoverageReport -reporttypes:'Html;Cobertura' && echo 'Coverage report generated in ./tests/TestResults/CoverageReport'",
+    "test-command": "dotnet test tests/Ordering.UnitTests/Ordering.UnitTests.csproj --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --logger trx --logger 'console;verbosity=detailed' && find ./tests/TestResults -name 'coverage.cobertura.xml' -exec cp {} ./tests/TestResults/coverage.cobertura.xml \\; && reportgenerator -reports:./tests/TestResults/coverage.cobertura.xml -targetdir:./tests/TestResults/CoverageReport -reporttypes:'Html;Cobertura' && echo 'Coverage report generated in ./tests/TestResults/CoverageReport'",
     "coverage-type": "cobertura",
     "code-coverage-report-path": "tests/TestResults/coverage.cobertura.xml",
     "desired-coverage": 85,
