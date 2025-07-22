@@ -33,8 +33,14 @@ TEST_ENV_DOCKER_STAGE="$(
     test-gen-config.json
 )"
 
+# Build the test environment Docker stage
+echo "Building test environment Docker stage..."
+
+# Build only the test stage from the Dockerfile
 docker build \
   --target "$TEST_ENV_DOCKER_STAGE" \
   --platform "$DOCKER_PLATFORM" \
   --tag "$PROJECT_NAME:$TEST_ENV_DOCKER_STAGE" \
   .
+
+echo "Test environment Docker stage built successfully!"
