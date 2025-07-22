@@ -59,6 +59,8 @@ COPY . .
 # Install ReportGenerator tool for test coverage reports
 RUN dotnet tool install -g dotnet-reportgenerator-globaltool
 
+RUN dotnet workload install maui-tizen
+
 # Add dotnet tools to PATH
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
