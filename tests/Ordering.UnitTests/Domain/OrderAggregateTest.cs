@@ -360,3 +360,295 @@ using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;
 
 */
 }
+/*
+FAILED TEST: The test run failed due to two main issues in the `OrderAggregateTest.cs` file:
+
+1. **Duplicate Using Directive**  
+   - The `using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;` directive is declared twice — once at the top of the file and again inside the namespace block.  
+   - **Fix**: Remove the duplicate `using` directive inside the namespace block. Keep only one at the top of the file.
+
+2. **Syntax Errors (Brace Mismatches)**  
+   - There is an **invalid token `}`** at line 362 and a **missing closing brace `}`** at line 380, causing a syntax error.  
+   - **Fix**: Review the class and method structure to ensure all opening braces `{` have matching closing braces `}` in the correct order.
+
+    [TestMethod]
+    public void Set_negative_units_on_order_item_throws_exception()
+    {
+        // Arrange
+        var productId = 1;
+        var productName = "Test Product";
+        var unitPrice = 10.0m;
+        var discount = 0;
+        var pictureUrl = "http://example.com";
+        var units = 1;
+        var newUnits = -1;
+    
+        var orderItem = new OrderItem(productId, productName, unitPrice, discount, pictureUrl, units);
+    
+        // Act & Assert
+        Assert.ThrowsException<OrderingDomainException>(() => orderItem.AddUnits(newUnits));
+    }
+
+*/
+/*
+FAILED TEST: **Analysis:**  
+The test run failed due to two main issues in the file `OrderAggregateTest.cs`:  
+
+1. **Duplicate using directive**:  
+   - The `using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;` directive is declared twice — once at the top of the file and again inside the namespace block.  
+   - **Fix**: Remove the duplicate `using` directive inside the namespace block. Keep only one at the top of the file.  
+
+2. **Syntax errors with braces**:  
+   - There is an **invalid token `}`** at line 362 and a **missing closing brace `}`** at line 380, causing a syntax error.  
+   - **Fix**: Review the class and method structure to ensure all opening braces `{` have matching closing braces `}` in the correct order.
+
+    [TestMethod]
+    public void Set_negative_discount_on_order_item_throws_exception()
+    {
+        // Arrange
+        var productId = 1;
+        var productName = "Test Product";
+        var unitPrice = 10.0m;
+        var discount = 0;
+        var pictureUrl = "http://example.com";
+        var units = 1;
+        var newDiscount = -1;
+    
+        var orderItem = new OrderItem(productId, productName, unitPrice, discount, pictureUrl, units);
+    
+        // Act & Assert
+        Assert.ThrowsException<OrderingDomainException>(() => orderItem.SetNewDiscount(newDiscount));
+    }
+
+*/
+/*
+FAILED TEST: The test run failed due to two main issues in the `OrderAggregateTest.cs` file:
+
+1. **Duplicate Using Directive**  
+   - The `using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;` directive is declared twice — once at the top of the file and again inside the namespace block.  
+   - **Fix**: Remove the duplicate `using` directive inside the namespace block. Keep only one at the top of the file.
+
+2. **Syntax Errors (Brace Mismatches)**  
+   - There is an **invalid token `}`** at line 362 and a **missing closing brace `}`** at line 377, causing syntax errors.  
+   - **Fix**: Review the class and method structure to ensure all opening braces `{` have matching closing braces `}` in the correct order.
+
+    [TestMethod]
+    public void Add_order_item_with_discount_greater_than_unit_price_throws_exception()
+    {
+        // Arrange
+        var productId = 1;
+        var productName = "Test Product";
+        var unitPrice = 10.0m;
+        var discount = 15;
+        var pictureUrl = "http://example.com";
+        var units = 1;
+    
+        // Act & Assert
+        Assert.ThrowsException<OrderingDomainException>(() => new OrderItem(productId, productName, unitPrice, discount, pictureUrl, units));
+    }
+
+*/
+/*
+FAILED TEST: The test run failed due to two main issues in the `OrderAggregateTest.cs` file:
+
+1. **Duplicate Using Directive**  
+   - The `using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;` directive is declared twice — once at the top of the file and again inside the namespace block.  
+   - **Fix**: Remove the duplicate `using` directive inside the namespace block.
+
+2. **Syntax Errors (Brace Mismatches)**  
+   - There is an **invalid token `}`** at line 362 and a **missing closing brace `}`** at line 377, causing syntax errors.  
+   - **Fix**: Review the class and method structure to ensure all opening braces `{` have matching closing braces `}` in the correct order.
+
+    [TestMethod]
+    public void Add_order_item_with_zero_units_throws_exception()
+    {
+        // Arrange
+        var productId = 1;
+        var productName = "Test Product";
+        var unitPrice = 10.0m;
+        var discount = 0;
+        var pictureUrl = "http://example.com";
+        var units = 0;
+    
+        // Act & Assert
+        Assert.ThrowsException<OrderingDomainException>(() => new OrderItem(productId, productName, unitPrice, discount, pictureUrl, units));
+    }
+
+*/
+/*
+FAILED TEST: The test run failed due to two main issues in the `OrderAggregateTest.cs` file:
+
+1. **Duplicate Using Directive**  
+   - The `using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;` directive is declared twice — once at the top of the file and again inside the namespace block.  
+   - **Fix**: Remove the duplicate `using` directive inside the namespace block. Only one `using` directive for the namespace should be present at the top of the file.
+
+2. **Syntax Errors (Brace Mismatches)**  
+   - There is an **invalid token `}`** at line 362 and a **missing closing brace `}`** at line 373, causing syntax errors.  
+   - **Fix**: Review the class and method structure to ensure all opening braces `{` have matching closing braces `}` in the correct order.
+
+    [TestMethod]
+    public void Change_order_status_from_submitted_to_shipped_throws_exception()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new Order("1", "User", address, 1, "1234", "123", "John Doe", DateTime.UtcNow);
+    
+        // Act & Assert
+        Assert.ThrowsException<OrderingDomainException>(() => order.SetShippedStatus());
+    }
+
+*/
+/*
+FAILED TEST: The test run failed due to two main issues in the `OrderAggregateTest.cs` file:
+
+1. **Duplicate Using Directive**  
+   - The `using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;` directive is declared twice — once at the top and again inside the namespace block.  
+   - **Fix**: Remove the duplicate `using` directive inside the namespace block.
+
+2. **Syntax Errors (Missing/Misplaced Braces)**  
+   - There is an **invalid token `}`** at line 362 and a **missing closing brace `}`** at line 376, causing syntax errors.  
+   - **Fix**: Review the class and method structure to ensure all opening braces `{` have matching closing braces `}` in the correct order.
+
+    [TestMethod]
+    public void Cancel_shipped_order_throws_exception()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new Order("1", "User", address, 1, "1234", "123", "John Doe", DateTime.UtcNow);
+        order.SetStockConfirmedStatus();
+        order.SetPaidStatus();
+        order.SetShippedStatus(); // Need to set shipped status to test cancellation of shipped order
+    
+        // Act & Assert
+        Assert.ThrowsException<OrderingDomainException>(() => order.SetCancelledStatus());
+    }
+
+*/
+/*
+FAILED TEST: The test run failed due to two main issues in the file `OrderAggregateTest.cs`:
+
+1. **Duplicate Using Directive**  
+   - The `using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;` directive is declared twice — once at the top of the file and again inside the namespace block.  
+   - **Fix**: Remove the duplicate `using` directive inside the namespace block. Only one `using` directive for the namespace should be present at the top of the file.
+
+2. **Syntax Errors (Invalid Token and Missing Closing Brace)**  
+   - An invalid token `}` is present at line 362.  
+   - A closing brace `}` is missing at line 380, causing a syntax error.  
+   - **Fix**: Review the class and method structure to ensure all opening braces `{` have matching closing braces `}` in the correct order.
+
+    [TestMethod]
+    public void Cancel_paid_order_throws_exception()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new Order("1", "User", address, 1, "1234", "123", "John Doe", DateTime.UtcNow);
+        order.SetStockConfirmedStatus();
+        order.SetPaidStatus(); // Need to set to Paid status to test cancellation from Paid
+    
+        // Act & Assert
+        Assert.ThrowsException<OrderingDomainException>(() => order.SetCancelledStatus());
+    }
+
+*/
+/*
+FAILED TEST: The test run failed due to two main issues in the `OrderAggregateTest.cs` file:
+
+1. **Duplicate Using Directive**  
+   - The `using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;` directive is declared twice — once at the top of the file and again inside the namespace block.  
+   - **Fix**: Remove the duplicate `using` directive inside the namespace block. Only one `using` directive for the namespace should be present at the top of the file.
+
+2. **Syntax Errors (Invalid Token and Missing Brace)**  
+   - There is an **invalid token `}`** at line 362.  
+   - A **closing brace `}` is missing** at line 380, causing a syntax error.  
+   - **Fix**: Review the class and method structure to ensure all opening braces `{` have matching closing braces `}` in the correct order.
+
+    [TestMethod]
+    public void Cancel_order_when_stock_rejected_for_multiple_items()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new Order("1", "User", address, 1, "1234", "123", "John Doe", DateTime.UtcNow);
+        order.AddOrderItem(1, "Product 1", 10.0m, 0, "http://example.com", 1);
+        order.AddOrderItem(2, "Product 2", 20.0m, 0, "http://example.com", 1);
+        order.SetAwaitingValidationStatus();
+    
+        var rejectedItems = new List<int> { 1, 2 };
+    
+        // Act
+        order.SetCancelledStatusWhenStockIsRejected(rejectedItems);
+    
+        // Assert
+        Assert.AreEqual(OrderStatus.Cancelled, order.OrderStatus);
+        Assert.AreEqual("The product items don't have stock: (Product 1, Product 2).", order.Description);
+    }
+
+*/
+/*
+FAILED TEST: The test run failed due to two main issues in the file `OrderAggregateTest.cs`:
+
+1. **Duplicate Using Directive**  
+   - The `using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;` directive is declared twice — once at the top and again inside the namespace block.  
+   - **Fix**: Remove the duplicate `using` directive inside the namespace block.
+
+2. **Syntax Errors (Missing/Extra Braces)**  
+   - There is an invalid token `}` at line 362 and a missing closing brace `}` at line 380, causing a syntax error.  
+   - **Fix**: Review and correct the class/method structure to ensure all opening braces `{` have matching closing braces `}` in the correct order.
+
+    [TestMethod]
+    public void Add_order_item_with_same_product_id_and_lower_discount()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new Order("1", "User", address, 1, "1234", "123", "John Doe", DateTime.UtcNow);
+        order.AddOrderItem(1, "Product 1", 10.0m, 10, "http://example.com", 1);
+    
+        // Act
+        order.AddOrderItem(1, "Product 1", 10.0m, 5, "http://example.com", 1);
+    
+        // Assert
+        var item = order.OrderItems.SingleOrDefault(i => i.ProductId == 1);
+        Assert.IsNotNull(item);
+        Assert.AreEqual(10, item.Discount);
+        Assert.AreEqual(2, item.Units);
+    }
+
+*/
+/*
+FAILED TEST: The test run failed due to **C# compilation errors** in the file `OrderAggregateTest.cs`, specifically:
+
+1. **Duplicate using directive**:  
+   - The `using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;` directive appears **twice** — once at the top of the file and again inside the namespace block.  
+   - **Fix**: Remove the duplicate `using` directive inside the namespace block. Only one `using` directive for the namespace should be present at the top of the file.
+
+2. **Invalid token '}' in a member declaration (line 362)**:  
+   - A closing brace `}` is misplaced or appears where it is not syntactically valid, likely due to missing method bodies or incorrect structuring of test methods.  
+   - **Fix**: Ensure all test methods have valid method bodies enclosed in `{}` and are properly structured.
+
+3. **Missing closing brace (line 380)**:  
+   - A closing brace `}` is missing, likely for the class or a method, causing a syntax error.  
+   - **Fix**: Review the class and method structure to ensure all opening braces `{` have matching closing braces `}`.
+
+**Recommended Actions**:
+- Remove the duplicate `using` directive inside the namespace.
+- Add missing method bodies to all test methods.
+- Ensure all class and method braces are properly closed in the correct order.
+
+    [TestMethod]
+    public void Add_order_item_with_same_product_id_and_higher_discount()
+    {
+        // Arrange
+        var address = new Address("123 Main St", "City", "State", "Country", "12345");
+        var order = new Order("1", "User", address, 1, "1234", "123", "John Doe", DateTime.UtcNow);
+        order.AddOrderItem(1, "Product 1", 10.0m, 5, "http://example.com", 1);
+    
+        // Act
+        order.AddOrderItem(1, "Product 1", 10.0m, 10, "http://example.com", 1);
+    
+        // Assert
+        var item = order.OrderItems.SingleOrDefault(i => i.ProductId == 1);
+        Assert.IsNotNull(item);
+        Assert.AreEqual(10, item.Discount);
+        Assert.AreEqual(1, item.Units);
+    }
+
+*/
