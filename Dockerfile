@@ -62,5 +62,5 @@ RUN dotnet tool install -g dotnet-reportgenerator-globaltool
 # Add dotnet tools to PATH
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
-# Run tests with coverage (Ordering.UnitTests only)
-CMD ["bash", "-c", "dotnet test tests/Ordering.UnitTests/Ordering.UnitTests.csproj --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults --logger trx --logger 'console;verbosity=detailed' && find ./tests/TestResults -name 'coverage.cobertura.xml' -exec cp {} ./tests/TestResults/coverage.cobertura.xml \\; && reportgenerator -reports:./tests/TestResults/coverage.cobertura.xml -targetdir:./tests/TestResults/CoverageReport -reporttypes:'Html;Cobertura' && echo 'Coverage report generated in ./tests/TestResults/CoverageReport'"]
+# Run tests with coverage (OrderAggregateTest only)
+CMD ["bash", "-c", "dotnet test tests/Ordering.UnitTests/Ordering.UnitTests.csproj --filter FullyQualifiedName~OrderAggregateTest --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults && reportgenerator -reports:./tests/TestResults/**/coverage.cobertura.xml -targetdir:./tests/TestResults/CoverageReport -reporttypes:Cobertura"]
