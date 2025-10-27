@@ -15,11 +15,11 @@
       {
         "source-file-path": "src/Ordering.Domain/AggregatesModel/OrderAggregate/Order.cs",
         "test-file-path": "tests/Ordering.UnitTests/Domain/OrderAggregateTest.cs",
-        "test-command": "dotnet test tests/Ordering.UnitTests/Ordering.UnitTests.csproj --filter FullyQualifiedName~OrderAggregateTest --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults && reportgenerator -reports:./tests/TestResults/**/coverage.cobertura.xml -targetdir:./tests/TestResults/CoverageReport -reporttypes:Cobertura"
+        "test-command": "dotnet test tests/Ordering.UnitTests/Ordering.UnitTests.csproj --filter FullyQualifiedName~OrderAggregateTest --collect:'XPlat Code Coverage' --results-directory ./tests/TestResults && reportgenerator -reports:./tests/TestResults/**/coverage.cobertura.xml -targetdir:./tests/TestResults/ -reporttypes:Cobertura"
       }
     ],
     "coverage-type": "cobertura",
-    "code-coverage-report-path": "tests/TestResults/coverage.cobertura.xml",
+    "code-coverage-report-path": "tests/TestResults/Cobertura.xml",
     "desired-coverage": 85,
     "max-iterations": 3,
     "max-number-of-test-cases": 8
